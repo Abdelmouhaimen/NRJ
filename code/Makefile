@@ -4,9 +4,9 @@ LIBZFP = libzfp.a
 
 BINDIR = ../bin
 
-BLAZDIR = ../lib/blaz-master
+BLAZDIR = ../libraries/blaz-master
 
-ZFPDIR = ../lib/zfp
+ZFPDIR = ../libraries/zfp
 
 LIBS = -L$(ZFPDIR)/lib -lzfp -lm
 
