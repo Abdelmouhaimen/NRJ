@@ -1,0 +1,317 @@
+V "GNAT Lib v12"
+M P W=b
+A -gnatA
+A -mtune=generic
+A -march=x86-64
+P SS ZX
+
+RN
+RV NO_DELAY
+RV NO_ENUMERATION_MAPS
+RV NO_EXCEPTION_HANDLERS
+RV NO_EXCEPTION_PROPAGATION
+RV NO_EXCEPTIONS
+RV NO_FIXED_POINT
+RV NO_FLOATING_POINT
+RV NO_IO
+RV NO_LOCAL_ALLOCATORS
+RV NO_NESTED_FINALIZATION
+RV NO_RELATIVE_DELAY
+RV NO_SECONDARY_STACK
+RV NO_STANDARD_STORAGE_POOLS
+RV NO_UNCHECKED_ACCESS
+RV NO_DEFAULT_INITIALIZATION
+RV NO_DYNAMIC_SIZED_OBJECTS
+RV NO_IMPLEMENTATION_ATTRIBUTES
+RV NO_IMPLEMENTATION_PRAGMAS
+
+U powerjoular%b		powerjoular.adb		0512154b NE OO SU
+W ada%s			ada.ads			ada.ali
+Z ada.calendar.delays%s	a-caldel.adb		a-caldel.ali
+W ada.characters%s	a-charac.ads		a-charac.ali
+W ada.characters.latin_1%s  a-chlat1.ads	a-chlat1.ali
+W ada.command_line%s	a-comlin.adb		a-comlin.ali
+Z ada.exceptions%s	a-except.adb		a-except.ali
+W ada.float_text_io%s	a-flteio.ads		a-flteio.ali
+W ada.strings%s		a-string.ads		a-string.ali
+W ada.strings.fixed%s	a-strfix.adb		a-strfix.ali
+Z ada.strings.text_buffers%s  a-sttebu.adb	a-sttebu.ali
+W ada.strings.unbounded%s  a-strunb.adb		a-strunb.ali
+W ada.text_io%s		a-textio.adb		a-textio.ali
+W cpu_cycles%s		cpu_cycles.adb		cpu_cycles.ali
+W cpu_stat_app%s	cpu_stat_app.adb	cpu_stat_app.ali
+W cpu_stat_pid%s	cpu_stat_pid.adb	cpu_stat_pid.ali
+W csv_power%s		csv_power.adb		csv_power.ali
+W gnat%s		gnat.ads		gnat.ali
+W gnat.command_line%s	g-comlin.adb		g-comlin.ali
+W gnat.ctrl_c%s		g-ctrl_c.adb		g-ctrl_c.ali
+W gnat.os_lib%s		g-os_lib.ads		g-os_lib.ali
+W help_info%s		help_info.adb		help_info.ali
+W intel_rapl_sysfs%s	intel_rapl_sysfs.adb	intel_rapl_sysfs.ali
+W nvidia_smi%s		nvidia_smi.adb		nvidia_smi.ali
+W os_utils%s		os_utils.adb		os_utils.ali
+W raspberry_pi_cpu_formula%s  raspberry_pi_cpu_formula.adb  raspberry_pi_cpu_formula.ali
+Z system.concat_2%s	s-conca2.adb		s-conca2.ali
+Z system.img_int%s	s-imgint.ads		s-imgint.ali
+Z system.secondary_stack%s  s-secsta.adb	s-secsta.ali
+Z system.soft_links%s	s-soflin.adb		s-soflin.ali
+Z system.standard_library%s  s-stalib.adb	s-stalib.ali
+Z system.val_int%s	s-valint.ads		s-valint.ali
+
+D ada.ads		20220506073056 76789da1 ada%s
+D a-calend.ads		20220506073056 f55c50a3 ada.calendar%s
+D a-caldel.ads		20220506073056 9f20b83d ada.calendar.delays%s
+D a-charac.ads		20220506073056 2d3ec45b ada.characters%s
+D a-chlat1.ads		20220506073056 e0d72e76 ada.characters.latin_1%s
+D a-comlin.ads		20220506073056 4aa66568 ada.command_line%s
+D a-except.ads		20220506073056 2a7d8d70 ada.exceptions%s
+D a-finali.ads		20220506073056 bf4f806b ada.finalization%s
+D a-flteio.ads		20220506073056 e18a47a0 ada.float_text_io%s
+D a-ioexce.ads		20220506073056 40018c65 ada.io_exceptions%s
+D a-stream.ads		20220506073056 119b8fb3 ada.streams%s
+D a-string.ads		20220506073056 90ac6797 ada.strings%s
+D a-strfix.ads		20220506073056 a4e33eef ada.strings.fixed%s
+D a-strmap.ads		20220506073056 233229cd ada.strings.maps%s
+D a-strsea.ads		20220506073056 6f718bb4 ada.strings.search%s
+D a-sttebu.ads		20220506073056 18209c64 ada.strings.text_buffers%s
+D a-strunb.ads		20220506073056 5837d881 ada.strings.unbounded%s
+D a-stuten.ads		20220506073056 33c54060 ada.strings.utf_encoding%s
+D a-tags.ads		20220506073056 9eaa38c6 ada.tags%s
+D a-textio.ads		20220506073056 deada98a ada.text_io%s
+D a-tiflio.ads		20220506073056 fcca4daa ada.text_io.float_io%s
+D a-unccon.ads		20220506073056 0e9b276f ada.unchecked_conversion%s
+D a-uncdea.ads		20220506073056 c3a8ac65 ada.unchecked_deallocation%s
+D cpu_cycles.ads	20230612090836 4cfdd13b cpu_cycles%s
+D cpu_stat_app.ads	20230612090836 d4b15e94 cpu_stat_app%s
+D cpu_stat_pid.ads	20230612090836 d2c596b9 cpu_stat_pid%s
+D csv_power.ads		20230612090836 f38db65f csv_power%s
+D gnat.ads		20220506073056 b5988c27 gnat%s
+D g-comlin.ads		20220506073056 9c5f9169 gnat.command_line%s
+D g-ctrl_c.ads		20220506073056 7f09147b gnat.ctrl_c%s
+D g-dirope.ads		20220506073056 940c4438 gnat.directory_operations%s
+D g-os_lib.ads		20220506073056 0db74523 gnat.os_lib%s
+D g-regexp.ads		20220506073056 691be386 gnat.regexp%s
+D g-string.ads		20220506073056 c6abc540 gnat.strings%s
+D help_info.ads		20230612090836 8b78d55d help_info%s
+D intel_rapl_sysfs.ads	20230612090836 81683ec9 intel_rapl_sysfs%s
+D interfac.ads		20220506073056 edec285f interfaces%s
+D i-cstrea.ads		20220506073056 e53d8b8e interfaces.c_streams%s
+D nvidia_smi.ads	20230612090836 69503894 nvidia_smi%s
+D os_utils.ads		20230612090836 6e38fc91 os_utils%s
+D powerjoular.adb	20230612090836 1b06ff7b powerjoular%b
+D raspberry_pi_cpu_formula.ads  20230612090836 2d0be983 raspberry_pi_cpu_formula%s
+D system.ads		20220506073056 a2da961d system%s
+D s-atocou.ads		20220506073056 dc18efc3 system.atomic_counters%s
+D s-casuti.ads		20220506073056 cf13d755 system.case_util%s
+D s-conca2.ads		20220506073056 3d460502 system.concat_2%s
+D s-crtl.ads		20220506073056 8a0692f8 system.crtl%s
+D s-exctab.ads		20220506073056 91bef6ef system.exception_table%s
+D s-ficobl.ads		20220506073056 dc5161d4 system.file_control_block%s
+D s-finmas.ads		20220506073056 bd688734 system.finalization_masters%s
+D s-finroo.ads		20220506073056 4ff27390 system.finalization_root%s
+D s-imagei.ads		20220506073056 0d3f86a7 system.image_i%s
+D s-imgint.ads		20220506073056 bdb6f5ec system.img_int%s
+D s-memory.ads		20220506073056 5b8432d0 system.memory%s
+D s-os_lib.ads		20220506073056 a2467c22 system.os_lib%s
+D s-parame.ads		20220506073056 d494a4a6 system.parameters%s
+D s-pooglo.ads		20220506073056 91708d21 system.pool_global%s
+D s-putima.ads		20220506073056 4e095881 system.put_images%s
+D s-regexp.ads		20220506073056 9c7d27a7 system.regexp%s
+D s-secsta.ads		20220506073056 62cd9202 system.secondary_stack%s
+D s-soflin.ads		20220506073056 df77073e system.soft_links%s
+D s-stache.ads		20220506073056 0b81c1fe system.stack_checking%s
+D s-stalib.ads		20220506073056 1c9580f6 system.standard_library%s
+D s-stalib.adb		20220506073056 eb464a47 system.standard_library%b
+D s-stoele.ads		20220506073056 6d8e1ff4 system.storage_elements%s
+D s-stoele.adb		20220506073056 8f5a9db6 system.storage_elements%b
+D s-stopoo.ads		20220506073056 e9fa2dd8 system.storage_pools%s
+D s-stratt.ads		20220506073056 f7dfd786 system.stream_attributes%s
+D s-string.ads		20220506073056 582aac7d system.strings%s
+D s-traent.ads		20220506073056 c81cbf8c system.traceback_entries%s
+D s-unstyp.ads		20220506073056 fa2a7f59 system.unsigned_types%s
+D s-valint.ads		20220506073056 85ddbf9c system.val_int%s
+D s-valuns.ads		20220506073056 e8a1f424 system.val_uns%s
+D s-valuti.ads		20220506073056 4d0d41f3 system.val_util%s
+D s-valuei.ads		20220506073056 75953b98 system.value_i%s
+D s-valueu.ads		20220506073056 eb2f4477 system.value_u%s
+D s-wchcon.ads		20220506073056 d9032363 system.wch_con%s
+D unchconv.ads		20220506073056 ca2f9e18 unchecked_conversion%s
+G a e
+G c Z b b [powerjoular standard 32 11 none]
+G r s intel_rapl_data [powerjoular standard 32 11 none] [intel_rapl_dataIP intel_rapl_sysfs 15 10 none]
+G r s cpu_cycles_data [powerjoular standard 32 11 none] [cpu_cycles_dataIP cpu_cycles 15 10 none]
+G r s cpu_stat_app_data [powerjoular standard 32 11 none] [cpu_stat_app_dataIP cpu_stat_app 21 10 none]
+G r l cpu_stat_app_data [powerjoular standard 32 11 none] [cpu_stat_app_dataDI cpu_stat_app 21 10 none]
+G r k cpu_stat_app_data [powerjoular standard 32 11 none] [cpu_stat_app_dataDF cpu_stat_app 21 10 none]
+G r c none [powerjoular standard 32 11 none] [get_os_name os_utils 27 14 none]
+G r c none [powerjoular standard 32 11 none] [get_platform_name os_utils 23 14 none]
+G r c none [powerjoular standard 32 11 none] [show_help help_info 15 15 none]
+G r c none [powerjoular standard 32 11 none] [check_intel_supported_system os_utils 15 14 none]
+G r c none [powerjoular standard 32 11 none] [check_supported_packages intel_rapl_sysfs 39 15 none]
+G r c none [powerjoular standard 32 11 none] [check_nvidia_supported_system nvidia_smi 18 14 none]
+G r c none [powerjoular standard 32 11 none] [calculate_cpu_cycles cpu_cycles 26 15 none]
+G r c none [powerjoular standard 32 11 none] [calculate_pid_time cpu_stat_pid 25 15 none]
+G r c none [powerjoular standard 32 11 none] [update_pid_array cpu_stat_app 35 15 none]
+G r c none [powerjoular standard 32 11 none] [calculate_app_time cpu_stat_app 32 15 none]
+G r c none [powerjoular standard 32 11 none] [calculate_energy intel_rapl_sysfs 32 15 none]
+G r c none [powerjoular standard 32 11 none] [check_raspberry_pi_supported_system os_utils 18 14 none]
+G r c none [powerjoular standard 32 11 none] [calculate_cpu_power raspberry_pi_cpu_formula 17 14 none]
+G r c none [powerjoular standard 32 11 none] [get_nvidia_smi_power nvidia_smi 15 14 none]
+G r c none [powerjoular standard 32 11 none] [show_on_terminal_pid csv_power 24 15 none]
+G r c none [powerjoular standard 32 11 none] [save_pid_to_csv_file csv_power 18 15 none]
+G r c none [powerjoular standard 32 11 none] [show_on_terminal csv_power 21 15 none]
+G r c none [powerjoular standard 32 11 none] [save_to_csv_file csv_power 15 15 none]
+X 1 ada.ads
+16K9*Ada 20e8 41|12r6 12r23 13r6 13r29 15r6 15r33 18r6 18r29 19r6 19r34 20r6
+. 20r28 157r15 163r23 170r27 173r27 182r23 188r106
+X 4 a-charac.ads
+16K13*Characters 18e19 41|19r10 19r38 157r19 163r27 170r31 173r31 182r27
+X 5 a-chlat1.ads
+16K24*Latin_1 294e27 41|19w21 19r49 157r30 163r38 170r42 173r42 182r38
+32e4*HT{character} 41|99r14 102r14 157r38 163r46 170r50 173r50 182r46
+X 6 a-comlin.ads
+36K13*Command_Line 144e21 41|20w10 20r32
+39V13*Argument_Count{natural} 41|145s9
+X 9 a-flteio.ads
+20K13*Float_Text_IO[21|46] 41|13w10 13r33
+X 12 a-string.ads
+16K13*Strings 35e16 41|15r10 15r37 18r10 18r33 188r110
+33n24*Left{33E9} 41|188r118
+X 13 a-strfix.ads
+49K21*Fixed 1397e22 41|18w18 18r41
+1130V13*Trim{string} 41|188s57
+X 17 a-strunb.ads
+85K21*Unbounded 765e26 41|15w18 15r45
+90R9*Unbounded_String<8|43R9> 744e15 41|61r22 81r20 82r31
+107V13*To_Unbounded_String{90R9} 41|61s42 114s21 129s41 132s29 135s29 139s31
+120V13*To_String{string} 41|195s48 241s79 272s39 289s39 310s31
+155V14*"&"{90R9} 41|194s55
+163V14*"&"{90R9} 41|188s49 188s55 188s124 194s49 194s82
+X 20 a-textio.ads
+58K13*Text_IO 727e16 41|12w10 12r27
+88I12*Field{integer}
+263U14*New_Line 41|94s9
+464U14*Put 41|96s9 99s9 102s9
+507U14*Put_Line 41|95s9 98s9 101s9 104s9 105s9 151s9 152s9 156s5 157s5 163s13
+. 170s17 173s17 182s13 189s9 195s9
+X 21 a-tiflio.ads
+82U14*Put 41|97s9[9|20] 100s9[9|20] 103s9[9|20]
+84i7 Fore{20|88I12} 41|97r38[9|20] 100r36[9|20] 103r36[9|20]
+85i7 Aft{20|88I12} 41|97r49[9|20] 100r47[9|20] 103r47[9|20]
+86i7 Exp{20|88I12} 41|97r28[9|20] 100r26[9|20] 103r26[9|20]
+X 24 cpu_cycles.ads
+12K9*CPU_Cycles 28e15 41|22w6 22r22
+15R10*CPU_Cycles_Data 23e19 41|64r22 65r21
+21i13*cbusy{long_integer} 41|237r50 237r81
+22i13*ctotal{long_integer} 41|237r113 237r145 262r101 262r133 279r101 279r133
+26U15*Calculate_CPU_Cycles 41|201s9 222s9
+X 25 cpu_stat_app.ads
+14K9*CPU_STAT_App 37e17 41|30w6 30r24
+21R10*CPU_STAT_App_Data 29e19 41|67r23
+25r13*App_Name{17|90R9} 41|129m29 194r73 195r75
+27i13*Monitored_Time{long_integer} 41|279r60
+32U15*Calculate_App_Time 41|210s13 228s13
+35U15*Update_PID_Array 41|209s13
+X 26 cpu_stat_pid.ads
+12K9*CPU_STAT_PID 27e17 41|25w6 25r24
+15R10*CPU_STAT_PID_Data 22e19 41|66r23
+19i13*PID_Number{integer} 41|126m29 188r93 189r71
+21i13*Monitored_Time{long_integer} 41|262r60
+25U15*Calculate_PID_Time 41|203s13 224s13
+X 27 csv_power.ads
+12K9*CSV_Power 26e14 41|23w6 23r21
+15U15*Save_To_CSV_File 41|310s13
+18U15*Save_PID_To_CSV_File 41|272s17 289s17
+21U15*Show_On_Terminal 41|295s13
+24U15*Show_On_Terminal_PID 41|267s17 284s17
+X 28 gnat.ads
+37K9*GNAT 60e9 41|14r6 14r29 16r6 16r23 17r6 17r23
+X 29 g-comlin.ads
+287K14*Command_Line 1232e22 41|14w11 14r34
+377V13*Getopt{character} 41|118s14
+486V13*Parameter{string} 41|126s58 129s62 132s50 135s50
+X 30 g-ctrl_c.ads
+43K14*Ctrl_C 59e16 41|17w11 17r28
+45P9*Handler_Type
+49U14*Install_Handler 41|111s5
+49p31 Handler{45P9} 41|111r21
+X 32 g-os_lib.ads
+51K14*OS_Lib=51:36 41|16w11 16r28
+X 35 help_info.ads
+12K9*Help_Info 17e14 41|24w6 24r21
+15U15*Show_Help 41|120s13
+X 36 intel_rapl_sysfs.ads
+12K9*Intel_RAPL_sysfs 41e21 41|26w6 26r28
+15R10*Intel_RAPL_Data 29e19 41|53r19 54r18
+23f13*total_energy{float} 41|247r39 247r66
+26b13*psys_supported{boolean} 41|162r24 163r100 166r29
+27b13*pkg_supported{boolean} 41|169r28 170r103
+28b13*dram_supported{boolean} 41|172r28 173r104
+32U15*Calculate_Energy 41|215s13 233s13
+39U15*Check_Supported_Packages 41|161s9 167s13 168s13
+X 39 nvidia_smi.ads
+12K9*Nvidia_SMI 20e15 41|28w6 28r22
+15V14*Get_Nvidia_SMI_Power{float} 41|254s26
+18V14*Check_Nvidia_Supported_System{boolean} 41|180s29
+X 40 os_utils.ads
+12K9*OS_Utils 29e13 41|27w6 27r20
+15V14*Check_Intel_Supported_System{boolean} 41|159s8 213s12 231s12 245s12
+18V14*Check_Raspberry_Pi_Supported_System{boolean} 41|239s12
+23V14*Get_Platform_Name{string} 41|78s31
+27V14*Get_OS_Name{string} 41|75s25
+X 41 powerjoular.adb
+32U11*Powerjoular 32b11 313l5 313t16
+36f5 CPU_Power{float} 241m13 242r28 248m13 249r28 263r53 267r92 280r53 284r92
+. 295r83 298r31 305r36 310r87
+37f5 Previous_CPU_Power{float} 298m9
+38f5 PID_CPU_Power{float} 263m13 267r60 272r97
+39f5 App_CPU_Power{float} 280m13 284r60 289r97
+40f5 CPU_Energy{float} 100r14 305m9 305r23
+43f5 GPU_Power{float} 254m13 257r42 295r94 299r31 306r36 310r98
+44f5 Previous_GPU_Power{float} 299m9
+45f5 GPU_Energy{float} 103r14 306m9 306r23
+48f5 Previous_Total_Power{float} 295r61 300m9
+49f5 Total_Power{float} 242m13 249m13 257m13 257r28 295r48 300r33 304r40
+. 310r74
+50f5 Total_Energy{float} 97r14 304m9 304r25
+53r5 RAPL_Before{36|15R10} 161m35 161r35 162r12 163r88 166r17 167m39 167r39
+. 168m39 168r39 169r16 170r91 172r16 173r92 176r23 215m31 215r31 247r54
+54r5 RAPL_After{36|15R10} 176m9 233m31 233r31 247r28
+55f5 RAPL_Energy{float} 247m13 248r26
+58b5 Nvidia_Supported{boolean} 180m9 181r12 182r89 252r12 295r105
+61r5 Algorithm_Name{17|90R9} 139m13 241r90
+64r5 CPU_CCI_Before{24|15R10} 201m31 201r31 237r66 237r130 262r118 279r118
+65r5 CPU_CCI_After{24|15R10} 222m31 222r31 237r36 237r99 262r87 279r87
+66r5 CPU_PID_Monitor{26|15R10} 126m13 188r77 189r55 203m33 203r33 224m33
+. 224r33 262r44
+67r5 CPU_App_Monitor{25|21R10} 129m13 194r57 195r59 209m31 209r31 210m33
+. 210r33 228m33 228r33 279r44
+70f5 CPU_Utilization{float} 237m9 241r47 263r66 267r75 280r66 284r75 295r31
+. 310r57
+71f5 PID_CPU_Utilization{float} 262m13 263r31 267r39 272r76
+72f5 App_CPU_Utilization{float} 279m13 280r31 284r39 289r76
+75a5 OS_Name{string} 152r19
+78a5 Platform_Name{string} 150r9 157r58 159r38 213r42 231r42 239r49 241r64
+. 245r42
+81r5 CSV_Filename{17|90R9} 114m5 132m13 135m13 188r36 194r36 310r42
+82r5 PID_Or_App_CSV_Filename{17|90R9} 188m9 194m9 272r50 289r50
+85b5 Show_Terminal{boolean} 123m13 146m9 266r16 283r16 294r12
+86b5 Print_File{boolean} 133m13 136m13 271r16 288r16 309r12
+87b5 Monitor_PID{boolean} 127m13 187r8 202r12 223r12 261r12 294r40
+88b5 Monitor_App{boolean} 130m13 193r8 206r12 227r12 277r12 294r67
+89b5 Overwrite_Data{boolean} 137m13 272r112 289r112 310r109
+92U15 CtrlCHandler 92b15 107l9 107t21 111r32
+X 42 raspberry_pi_cpu_formula.ads
+14K9*Raspberry_Pi_CPU_Formula 41|29w6 29r36 42|19e29
+17V14*Calculate_CPU_Power{float} 41|241s26
+X 43 system.ads
+67M9*Address
+X 54 s-memory.ads
+51V13*Alloc{43|67M9} 101i<c,__gnat_malloc>22
+66U14*Free 102i<c,__gnat_free>22
+74V13*Realloc{43|67M9} 103i<c,__gnat_realloc>22
+X 55 s-os_lib.ads
+1063U14*OS_Exit 41|106s9
+X 64 s-stalib.adb
+87U14 Break_Start 88i<c,__gnat_break_start>22
+
