@@ -84,6 +84,7 @@ int main(int argc, char* argv[])
   size_t nz = 100;
   double* array = malloc(nx * ny * nz * sizeof(double));
 
+
   if (!decompress) {
     /* initialize array to be compressed */
     size_t i, j, k;
