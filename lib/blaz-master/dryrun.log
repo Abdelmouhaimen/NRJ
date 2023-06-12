@@ -1,0 +1,18 @@
+make --dry-run --always-make --keep-going --print-directory
+make: Entering directory '/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master'
+ 
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/block_delta.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/block_delta.o
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/block_slope.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/block_slope.o
+ 
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/dct.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/dct.o
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/io.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/io.o
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/compress.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/compress.o
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/operations.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/operations.o
+ 
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/compressed_operations.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/compressed_operations.o
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src/errors.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/errors.o
+gcc -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -c /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/examples/get_set.c -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/get_set.o
+ 
+gcc -o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/bin/get_set /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/block_delta.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/block_slope.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/dct.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/io.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/compress.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/operations.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/compressed_operations.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/errors.o /home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/obj/get_set.o -I/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master/src -O3 -lm
+make: Leaving directory '/home/asarhane/Desktop/stagenrj/StageNRJ/lib/blaz-master'
+ 
