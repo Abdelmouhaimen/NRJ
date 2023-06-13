@@ -79,9 +79,9 @@ int main(int argc, char* argv[])
   zfp_bool decompress = (argc == 2 && !strcmp(argv[1], "-d"));
 
   /* allocate 100x100x100 array of doubles */
-  size_t nx = 1;
-  size_t ny = 1;
-  size_t nz = 1;
+  size_t nx = 100;
+  size_t ny = 100;
+  size_t nz = 100;
   double* array = malloc(nx * ny * nz * sizeof(double));
 
   if (!decompress) {
