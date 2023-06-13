@@ -6,6 +6,8 @@
 #include <string.h>
 #include <unistd.h>
 #include "zfp.h"
+#include <signal.h>
+#include <time.h>
 
 /* compress or decompress array */
 static int
@@ -28,10 +30,10 @@ compress(double* array, size_t nx, size_t ny, double tolerance, zfp_bool decompr
   zfp = zfp_stream_open(NULL);
 
   /* set compression mode and parameters via one of four functions */
-/*  zfp_stream_set_reversible(zfp); */
-/*  zfp_stream_set_rate(zfp, rate, type, zfp_field_dimensionality(field), zfp_false); */
-/*  zfp_stream_set_precision(zfp, precision); */
-  zfp_stream_set_accuracy(zfp, tolerance);
+  /*  zfp_stream_set_reversible(zfp); */
+  /*  zfp_stream_set_precision(zfp, precision); */
+  /* zfp_stream_set_accuracy(zfp, tolerance);*/
+  zfp_stream_set_rate(zfp, 5.6, type, zfp_field_dimensionality(field), zfp_false);
 
   /* allocate buffer for compressed data */
   bufsize = zfp_stream_maximum_size(zfp, field);
@@ -73,6 +75,15 @@ compress(double* array, size_t nx, size_t ny, double tolerance, zfp_bool decompr
   return status;
 }
 
+void print_current_time() {
+    time_t rawtime;
+    struct tm * timeinfo;
+
+    time ( &rawtime );
+    timeinfo = localtime ( &rawtime );
+    printf ( "time and date: %s", asctime (timeinfo) );
+}
+
 void add(double* arraySum, double* arrayA, double* arrayB, size_t nx, size_t ny) {
     size_t i, j, k;
         for (j = 0; j < ny; j++)
@@ -84,8 +95,8 @@ void add(double* arraySum, double* arrayA, double* arrayB, size_t nx, size_t ny)
 int main(int argc, char* argv[])
 {
     /* allocate array of doubles */
-    size_t nx = 500;
-    size_t ny = 500;
+    size_t nx = 8192;
+    size_t ny = 8192;
     double* arrayA = malloc(nx * ny * sizeof(double));
     double* arrayB = malloc(nx * ny * sizeof(double));
 
@@ -101,26 +112,45 @@ int main(int argc, char* argv[])
             }
     
     FILE* terminal = fopen("/dev/tty", "w");
-    fprintf(terminal,"PID : %i\n", getpid());
-    sleep(10);
-    fprintf(terminal,"STARTED\n");
-    /* compress & decompress arrayA */
-    compress(arrayA, nx, ny, 1e-3, 0);
-    compress(arrayA, nx, ny, 1e-3, 1);
+    int terminal_fd = fileno(terminal);
+    
+    int pidFils = fork();
+    if (pidFils == -1) {
+        perror("fork failed");
+        exit(EXIT_FAILURE);
+    }
+    else if (pidFils == 0) {
+        char ppid[10];
+        sprintf(ppid, "%d", getppid());
+        dup2(terminal_fd, STDOUT_FILENO);
+        execlp("powerjoular", "powerjoular", "-f", "usage.txt","-p", ppid, NULL);
+        perror("execlp failed");
+        exit(EXIT_FAILURE);
+    }
+    else {
+      sleep(10);
+      fprintf(terminal,"START : ");
+      print_current_time();
+      /* compress & decompress arrayA */
+      compress(arrayA, nx, ny, 1e-3, 0);
+      compress(arrayA, nx, ny, 1e-3, 1);
 
-    /* compress & decompress arrayB */
-    compress(arrayB, nx, ny, 1e-3, 0);
-    compress(arrayB, nx, ny, 1e-3, 1);
+      /* compress & decompress arrayB */
+      compress(arrayB, nx, ny, 1e-3, 0);
+      compress(arrayB, nx, ny, 1e-3, 1);
 
 
-    double* arrayC = malloc(nx * ny * sizeof(double));
-    add(arrayC, arrayA, arrayB, nx, ny);
+      double* arrayC = malloc(nx * ny * sizeof(double));
+      add(arrayC, arrayA, arrayB, nx, ny);
 
-    compress(arrayC, nx, ny, 1e-3, 0);
-    fprintf(terminal,"DONE\n");
-    sleep(5);
-    free(arrayA);
-    free(arrayB);
-    free(arrayC);
+      compress(arrayC, nx, ny, 1e-3, 0);
+      fprintf(terminal,"FINISH : ");
+      print_current_time();
+      sleep(5);
+      kill(pidFils, SIGKILL);
+      free(arrayA);
+      free(arrayB);
+      free(arrayC);
+    }
 
 }
