@@ -147,7 +147,7 @@ int main(int argc, char* argv[])
       fprintf(terminal,"FINISH : ");
       print_current_time();
       sleep(5);
-      kill(pidFils, SIGKILL);
+      kill(pidFils, SIGINT);
       free(arrayA);
       free(arrayB);
       free(arrayC);

@@ -13,7 +13,7 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N 8192
+#define N 512
 
 int main() {
   int i, j;

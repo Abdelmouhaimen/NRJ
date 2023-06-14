@@ -21,8 +21,8 @@ int main(int argc, char* argv[])
 {
     Blaz_Matrix *matrixA, *matrixB;
     
-    matrixA = blaz_read_matrix("../libraries/blaz-master/data/mydata.ubz");
-    matrixB = blaz_read_matrix("../libraries/blaz-master/data/mydata.ubz");
+    matrixA = blaz_read_matrix("../libraries/blaz-master/data/mydata_8K.ubz");
+    matrixB = blaz_read_matrix("../libraries/blaz-master/data/mydata_8K.ubz");
 
 
     /* compress arrays */
@@ -38,22 +38,26 @@ int main(int argc, char* argv[])
     else if (pidFils == 0) {
         char ppid[10];
         sprintf(ppid, "%d", getppid());
-        execlp("powerjoular", "powerjoular", "-f", "usage.txt","-p", ppid, NULL);
+        execlp("powerjoular", "powerjoular","-p", ppid, NULL);
+
+        /*char N[10];
+        sprintf(N, "%d", 1000);
+        execl("./jouleit.sh","./jouleit.sh", "-n", N, NULL);*/
         perror("execlp failed");
+
         exit(EXIT_FAILURE);
     }
     else {
         /* add compressed arrays */
-        sleep(10);
-        printf("START : ");
-        print_current_time(); // Print start time
+        //printf("START : ");
+        //print_current_time(); // Print start time
         compressed_matrixA = blaz_compress(matrixA);
         compressed_matrixB = blaz_compress(matrixB);
         
         compressed_matrixC = blaz_add_compressed(compressed_matrixA, compressed_matrixB);
-        printf("FINISH : ");
-        print_current_time(); // Print finish time
-        sleep(5);
-        kill(pidFils, SIGKILL);
+        //printf("FINISH : ");
+        //print_current_time(); // Print finish time
+        //sleep(5);
+        kill(pidFils, SIGINT);
     }
 }
