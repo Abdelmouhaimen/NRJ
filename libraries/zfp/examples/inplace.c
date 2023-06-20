@@ -36,6 +36,7 @@ process(double* buffer, uint blocks, double tolerance)
 
   /* set tolerance for fixed-accuracy mode */
   zfp_stream_set_accuracy(zfp, tolerance);
+  //zfp_stream_set_rate(zfp, 5.6, zfp_type_double, zfp_field_dimensionality(zfp_field_2d(blocks, zfp_type_double,8, 16)), zfp_false);
 
   /* set maxbits to guard against prematurely overwriting the input */
   zfp_stream_params(zfp, &minbits, &maxbits, &maxprec, &minexp);
