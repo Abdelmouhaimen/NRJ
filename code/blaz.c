@@ -7,7 +7,7 @@
 #include <sys/wait.h>
 #include <time.h>
 
-#define N 1 /* Repeter le programme pour mesurer l'energie */
+#define N 10000000 /* Repeter le programme pour mesurer l'energie */
 
 
 void print_current_time() {
@@ -28,8 +28,8 @@ int main(int argc, char* argv[])
 
     /* Initialize arrays */
     Blaz_Matrix *matrixA, *matrixB;
-    matrixA = blaz_read_matrix("../libraries/blaz-master/data/cosexp1024.ubz");
-    matrixB = blaz_read_matrix("../libraries/blaz-master/data/cosexp1024.ubz");
+    matrixA = blaz_read_matrix("../libraries/blaz-master/data/cosexp16.ubz");
+    matrixB = blaz_read_matrix("../libraries/blaz-master/data/cosexp16.ubz");
 
 
     /* compress arrays */
@@ -53,8 +53,9 @@ int main(int argc, char* argv[])
     else {
         for (int i = 0; i < N; i++) {
             /* perform operations on arrays */
-            //compressed_matrixC = blaz_add_compressed(compressed_matrixA, compressed_matrixB);
-            compressed_matrixC = blaz_mul_compressed(compressed_matrixA, compressed_matrixB);
+            compressed_matrixC = blaz_add_compressed(compressed_matrixA, compressed_matrixB);
+            //compressed_matrixC = blaz_mul_compressed(compressed_matrixA, compressed_matrixB);
+            //compressed_matrixC = blaz_mul_cst_compressed(compressed_matrixA, sqrt(2.0));
         }
         end_t = clock();
         kill(pidFils, SIGINT);

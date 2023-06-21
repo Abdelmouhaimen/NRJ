@@ -7,8 +7,8 @@
 #include <signal.h>
 #include <time.h>
 
-#define N 5 /* Repeter le programme pour mesurer l'energie */
-#define NX 512 /* array dimensions: width */
+#define N 1 /* repeat program to measure energy consumption */
+#define NX 1024 /* array dimensions: width */
 #define NY NX /* array dimension: height */
 
 /* compress or decompress array */
@@ -35,7 +35,7 @@ compress(double* array, void** buffer, size_t nx, size_t ny, zfp_bool decompress
     /* set compression mode and parameters via one of four functions */
     /*  zfp_stream_set_reversible(zfp); */
     /*  zfp_stream_set_precision(zfp, precision); */
-    /* zfp_stream_set_accuracy(zfp, tolerance);*/
+    /* zfp_stream_set_accuracy(zfp, tolerance); */
     zfp_stream_set_rate(zfp, 5.6, type, zfp_field_dimensionality(field), zfp_false);
 
     /* allocate buffer for compressed data */
@@ -113,12 +113,12 @@ int main(int argc, char* argv[])
     clock_t start_t, end_t;
     int pidFils;
 	
-    /* allocate array of doubles */
+    /* allocate arrays of doubles */
     size_t nx = NX;
     size_t ny = NY;
     double* arrayA = malloc(nx * ny * sizeof(double));
     double* arrayB = malloc(nx * ny * sizeof(double));
-
+    double* arrayC = malloc(nx * ny * sizeof(double));
     
     /* initialize arrays to be compressed */
     size_t i, j;
@@ -129,7 +129,6 @@ int main(int argc, char* argv[])
                 arrayA[i + nx * j] = exp(-(x * x + y * y));
                 arrayB[i + nx * j] = exp(-(x * x + y * y));
             }
-    double* arrayC = malloc(nx * ny * sizeof(double));
 
     /* compress arrays */
     compress(arrayA, &bufferA, nx, ny, 0);
@@ -157,6 +156,7 @@ int main(int argc, char* argv[])
             /* perform operations on arrays */
             //add(arrayC, arrayA, arrayB, nx, ny);
             mul(arrayC, arrayA, arrayB, nx, ny, nx, ny);
+            //multiplyByConst(arrayC, arrayA, sqrt(2.0), nx, ny);
 
             /* compress result */
             compress(arrayC, &bufferC, nx, ny, 0);

@@ -26,9 +26,13 @@ zfp: zfp.c $(ZFPDIR)/lib/$(LIBZFP)
 blaz: $(OBJBLAZ)
 	$(CC) -o $(BINDIR)/$@ $^ $(CFLAGSBLAZ) $(LIBS)
 
+noCompression: noCompression.c
+	$(CC) -o $(BINDIR)/$@ $^ $(LIBS)
+
 
 $(ODIR)/%.o: $(BLAZDIR)/src/%.c
 	$(CC) $(CFLAGSBLAZ) -c $< -o $@
 
 $(ODIR)/blaz.o: blaz.c
 	$(CC) $(CFLAGSBLAZ) -c $< -o $@
+
