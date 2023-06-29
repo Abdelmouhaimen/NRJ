@@ -7,8 +7,9 @@
 #include <signal.h>
 #include <time.h>
 
-#define N 1 /* repeat program to measure energy consumption */
-#define NX 16 /* array dimensions: width */
+#define N 3 /* repeat program to measure energy consumption */
+#define N_OPs 256 /* number of operations */
+#define NX 128 /* array dimensions: width */
 #define NY NX /* array dimension: height */
 #define RATE 5.6 /* desired compression rate */
 
@@ -42,6 +43,7 @@ compress(double* array, void** buffer, size_t nx, size_t ny, zfp_bool decompress
     /* allocate buffer for compressed data */
     bufsize = zfp_stream_maximum_size(zfp, field);
     if (!decompress) {
+        free(*buffer);
         *buffer = malloc(bufsize);
     }
 
@@ -76,76 +78,64 @@ compress(double* array, void** buffer, size_t nx, size_t ny, zfp_bool decompress
 }
 
 /* arraySum = arrayA + arrayB */
-void add(double* arraySum, double* arrayA, double* arrayB, size_t nx, size_t ny) {
+double* add(double* arrayA, double* arrayB, size_t nx, size_t ny) {
+    double* arraySum = malloc(nx * ny * sizeof(double));
     int i, j;
         for (j = 0; j < ny; j++)
             for (i = 0; i < nx; i++) {
                 arraySum[i + nx * j] = arrayA[i + nx * j] + arrayB[i + nx * j];
             }
+    return arraySum;
 }
 
 /* arrayMul = arrayA * arrayB */
-void mul(double* arrayMul, double* arrayA, double* arrayB, size_t nxA, size_t nyB, size_t nxB, size_t nyA) {
-  if (nxA == nyB) {
-    int i, j, k;
-        for (j = 0; j < nyA; j++)
-            for (i = 0; i < nxB; i++) {
-              arrayMul[i + nxB * j] = 0;
-              for (k = 0; k < nxA; k++)
-                arrayMul[i + nxB * j] += arrayA[k + nxA * j] * arrayB[i + nxB * k];
-            }
-  } else
-    fprintf(stderr, "Error: incompatible dimensions for dot product\n");
+double* mul(double* arrayA, double* arrayB, size_t nxA, size_t nyB, size_t nxB, size_t nyA) {
+    double* arrayMul;
+    if (nxA == nyB) {
+        arrayMul = malloc(nxB * nyA * sizeof(double));
+        int i, j, k;
+            for (j = 0; j < nyA; j++)
+                for (i = 0; i < nxB; i++) {
+                arrayMul[i + nxB * j] = 0;
+                for (k = 0; k < nxA; k++)
+                    arrayMul[i + nxB * j] += arrayA[k + nxA * j] * arrayB[i + nxB * k];
+                }
+    } else
+        fprintf(stderr, "Error: incompatible dimensions for dot product\n");
+    return arrayMul;
 }
 
-/* arrayMulC = c * arrayA */
-void multiplyByConst(double* arrayMulC, double* arrayA, double c, size_t nx, size_t ny) {
-    int i, j;
-        for (j = 0; j < ny; j++)
-            for (i = 0; i < nx; i++) {
-                arrayMulC[i + nx * j] = c * arrayA[i + nx * j];
-            }
-}
-
-/* arrayC = arrayA(i,:) * arrayB(j,:) 
-@Param n = nxA = nyB*/
-void dotProduct(double result, double* arrayA, double* arrayB, size_t n, size_t nxB, int i, int j) {
-    size_t k;
-    result = 0;
-    for (k = 0; k < n; k++)
-        result += arrayA[k + n * i] * arrayB[j + nxB * k];
-}
 
 int main(int argc, char* argv[])
 {
     /* SETUP */
-    double* arrayA, *arrayB, *arrayC;
-    void* bufferA, *bufferB, *bufferC;
+    double** arrays = malloc((N_OPs+1) * sizeof(double*));
+    void** buffers = malloc((N_OPs+1) * sizeof(void*));
     clock_t start_t, end_t;
     int pidFils;
-    double result;
-	
-    /* allocate arrays of doubles */
     size_t nx = NX;
     size_t ny = NY;
-    arrayA = malloc(nx * ny * sizeof(double));
-    //arrayB = malloc(nx * ny * sizeof(double));
-    arrayC = malloc(nx * ny * sizeof(double));
+
+    /* initialize result array */
+    void* buffer_result;
+    double* array_result;
+
     
     /* initialize arrays to be compressed */
-    int i, j;
+    for (int l = 0; l < N_OPs+1; l++){
+        arrays[l] = malloc(nx * ny * sizeof(double));
+        /* allocate memory */
         for (int j = 0; j < ny; j++)
             for (int i = 0; i < nx; i++) {
                 double x = 2.0 * i / nx;
                 double y = 2.0 * j / ny;
-                arrayA[i + nx * j] = exp(-(x * x + y * y));
-                //arrayB[i + nx * j] = exp(-(x * x + y * y));
+                arrays[l][i + nx * j] = exp(-(x * x + y * y));
             }
+    }
 
     /* compress arrays */
-    compress(arrayA, &bufferA, nx, ny, 0);
-    //compress(arrayB, &bufferB, nx, ny, 0);
-
+    for (int l = 0; l < N_OPs+1; l++)
+        compress(arrays[l], &(buffers[l]), nx, ny, 0);
     start_t = clock();
 
     if ((pidFils = fork()) == -1) {
@@ -161,20 +151,23 @@ int main(int argc, char* argv[])
     }
     else {
         for (int l = 0; l < N; l++) {
-            /* decompress arrays */
-            compress(arrayA, &bufferA, nx, ny, 1);
-            //compress(arrayB, &bufferB, nx, ny, 1);
-            
-            /* perform operations on arrays */
-            //add(arrayC, arrayA, arrayB, nx, ny);
-            //mul(arrayC, arrayA, arrayB, nx, ny, nx, ny);
-            multiplyByConst(arrayC, arrayA, sqrt(2.0), nx, ny);
-            /*for(int i=0; i<ny; i++)
-                for(int j=0; j<nx; j++)
-                    dotProduct(result, arrayA, arrayB, nx, nx, i, j);*/
+            for(int i=0; i<N_OPs; i++) {
+                /* decompress array */
+                compress(arrays[i+1], &buffers[i], nx, ny, 1);
 
-            /* compress arrays */
-            compress(arrayC, &bufferC, nx, ny, 0);
+                /* perform operation */
+                if (i == 0) {
+                    compress(arrays[0], &buffers[0], nx, ny, 1);
+                    array_result = add(arrays[0], arrays[1], nx, ny);
+                } else {
+                    if (i % 2 == 0)
+                        array_result = add(array_result, arrays[i+1], nx, ny);
+                    else
+                        array_result = mul(array_result, arrays[i+1], nx, ny, nx, ny);
+                }
+            }
+            /* compress result */
+            compress(array_result, &buffer_result, nx, ny, 0);
         }
         kill(pidFils, SIGINT);
         end_t = clock();
@@ -182,12 +175,14 @@ int main(int argc, char* argv[])
         printf("Total time: %f\n", total_t);
         
         /* clean up */
-        free(arrayA);
-        //free(arrayB);
-        free(arrayC);
-        free(bufferA);
-        //free(bufferB);
-        free(bufferC);
+        for (int l = 0; l < N_OPs; l++) {
+            free(buffers[l]);
+            free(arrays[l]);
+        }
+        free(buffers);
+        free(arrays);
+        free(array_result);
+        free(buffer_result);
     }
 
 }

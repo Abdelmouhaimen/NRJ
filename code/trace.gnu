@@ -9,5 +9,6 @@ plot 'energyAddition_per_N' using 1:2 with linespoints title 'blaz', 'energyAddi
 
 plot 'energyMultiplication_per_N' using 1:2 with linespoints title 'blaz', 'energyMultiplication_per_N' using 1:3 with linespoints title 'zfp', 'energyMultiplication_per_N' using 1:4 with linespoints title 'no compression'
 
-
 plot 'energyMultiplyByC_per_N' using 1:2 with linespoints title 'blaz', 'energyMultiplyByC_per_N' using 1:3 with linespoints title 'zfp', 'energyMultiplyByC_per_N' using 1:4 with linespoints title 'no compression'
+
+plot 'energyDot_per_N' using 1:2 with linespoints title 'blaz', 'energyDot_per_N' using 1:3 with linespoints title 'zfp', 'energyDot_per_N' using 1:4 with linespoints title 'no compression'

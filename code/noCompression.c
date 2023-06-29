@@ -6,7 +6,7 @@
 #include <signal.h>
 #include <time.h>
 
-#define N 30 /* repeat program to measure energy consumption */
+#define N 15 /* repeat program to measure energy consumption */
 #define NX 8192 /* array dimensions: width */
 #define NY NX /* array dimension: height */
 
@@ -43,17 +43,28 @@ void multiplyByConst(double* arrayMulC, double* arrayA, double c, size_t nx, siz
             }
 }
 
+/* arrayC = arrayA(i,:) * arrayB(j,:) 
+@Param n = nxA = nyB*/
+void dotProduct(double result, double* arrayA, double* arrayB, size_t n, size_t nxB, int i, int j) {
+    size_t k;
+    result = 0;
+    for (k = 0; k < n; k++)
+        result += arrayA[k + n * i] * arrayB[j + nxB * k];
+}
+
+
 int main(int argc, char* argv[])
 {
     /* SETUP */
     clock_t start_t, end_t;
     int pidFils;
+    double result;
 	
     /* allocate arrays of doubles */
     size_t nx = NX;
     size_t ny = NY;
     double* arrayA = malloc(nx * ny * sizeof(double));
-    double* arrayB = malloc(nx * ny * sizeof(double));
+    //double* arrayB = malloc(nx * ny * sizeof(double));
     double* arrayC = malloc(nx * ny * sizeof(double));
     
     /* initialize arrays to be compressed */
@@ -63,7 +74,7 @@ int main(int argc, char* argv[])
                 double x = 2.0 * i / nx;
                 double y = 2.0 * j / ny;
                 arrayA[i + nx * j] = exp(-(x * x + y * y));
-                arrayB[i + nx * j] = exp(-(x * x + y * y));
+                //arrayB[i + nx * j] = exp(-(x * x + y * y));
             }
     
 
@@ -81,22 +92,25 @@ int main(int argc, char* argv[])
         exit(EXIT_FAILURE);
     }
     else {
-        for (int i = 0; i < N; i++) {
+        for (int l = 0; l < N; l++) {
             
             /* perform operations on arrays */
             //add(arrayC, arrayA, arrayB, nx, ny);
             //mul(arrayC, arrayA, arrayB, nx, ny, nx, ny);
             multiplyByConst(arrayC, arrayA, sqrt(2.0), nx, ny);
+            /*for(i=0; i<ny; i++)
+                for(j=0; j<ny; j++)
+                    dotProduct(result, arrayA, arrayB, nx, nx, i, j);*/
 
         }
-        end_t = clock();
         kill(pidFils, SIGINT);
+        end_t = clock();
         double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
         printf("Total time: %f\n", total_t);
         
         /* clean up */
         free(arrayA);
-        free(arrayB);
+        //free(arrayB);
         free(arrayC);
     }
 

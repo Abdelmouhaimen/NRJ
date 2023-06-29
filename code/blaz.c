@@ -7,29 +7,23 @@
 #include <sys/wait.h>
 #include <time.h>
 
-#define N 10000000 /* Repeter le programme pour mesurer l'energie */
-
-
-void print_current_time() {
-    time_t rawtime;
-    struct tm * timeinfo;
-
-    time ( &rawtime );
-    timeinfo = localtime ( &rawtime );
-    printf("time and date: %s", asctime (timeinfo) );
-}
-
+#define N 128 /* Repeter le programme pour mesurer l'energie */
+#define NX 128 /* array dimensions: width */
+#define NY NX /* array dimension: height */
 
 int main(int argc, char* argv[])
 {
-    /* SETUP */
+    /* SETUP */ 
     clock_t start_t, end_t;
     int pidFils;
+    double result;
 
     /* Initialize arrays */
     Blaz_Matrix *matrixA, *matrixB;
-    matrixA = blaz_read_matrix("../libraries/blaz-master/data/cosexp16.ubz");
-    matrixB = blaz_read_matrix("../libraries/blaz-master/data/cosexp16.ubz");
+    char data_filename[150];
+    sprintf(data_filename, "../libraries/blaz-master/data/cosexp%d.ubz", NX);
+    matrixA = blaz_read_matrix(data_filename);
+    matrixB = blaz_read_matrix(data_filename);
 
 
     /* compress arrays */
@@ -51,14 +45,17 @@ int main(int argc, char* argv[])
         exit(EXIT_FAILURE);
     }
     else {
-        for (int i = 0; i < N; i++) {
+        for (int l = 0; l < N; l++) {
             /* perform operations on arrays */
-            compressed_matrixC = blaz_add_compressed(compressed_matrixA, compressed_matrixB);
-            //compressed_matrixC = blaz_mul_compressed(compressed_matrixA, compressed_matrixB);
+            //compressed_matrixC = blaz_add_compressed(compressed_matrixA, compressed_matrixB);
+            compressed_matrixC = blaz_mul_compressed(compressed_matrixA, compressed_matrixB);
             //compressed_matrixC = blaz_mul_cst_compressed(compressed_matrixA, sqrt(2.0));
+            /*for(int i=0; i<NY; i++)
+                for(int j=0; j<NX; j++)
+                    result = blaz_dot_product_compressed(compressed_matrixA, compressed_matrixB, i, j);*/
         }
-        end_t = clock();
         kill(pidFils, SIGINT);
+        end_t = clock();
         double total_t = (double)(end_t - start_t) / CLOCKS_PER_SEC;
         printf("Total time: %f\n", total_t);
     }
