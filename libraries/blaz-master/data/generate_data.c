@@ -13,33 +13,34 @@
 #include <stdlib.h>
 #include <math.h>
 
-#define N 4096
 
 int main() {
   int i, j;
-  double x, y, step;
+  double x, y, step_x, step_y;
   FILE *f;
-  int n = N;
+  int nx = 1048;
+  int ny = 680;
   double d;
 
   char filename[20];
-  sprintf(filename, "cosexp%i.ubz", N);
+  sprintf(filename, "cosexp%ix%i.ubz", nx, ny);
   f = fopen(filename,"w");
 
-  int a = fwrite(&n,sizeof(int),1,f);
-  int b = fwrite(&n,sizeof(int),1,f);
+  int a = fwrite(&nx,sizeof(int),1,f);
+  int b = fwrite(&ny,sizeof(int),1,f);
 
-  step = 4.0 / N;
+  step_x = 4.0 / nx;
+  step_y = 4.0 / ny;
   y = -2.0;
 
-  for(i=0;i<N;i++) {
+  for(i=0;i<ny;i++) {
     x = -2.0;
-    for(j=0;j<N;j++) {
+    for(j=0;j<nx;j++) {
       d = cos(x*x +y*y)*exp(-0.1*(x*x+y*y)) ;
       fwrite(&d,sizeof(double),1,f);
-      x += step;
+      x += step_x;
     }
-    y += step;
+    y += step_y;
   }
   fclose(f);
 }

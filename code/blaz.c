@@ -7,8 +7,8 @@
 #include <sys/wait.h>
 #include <time.h>
 
-#define N 128 /* Repeter le programme pour mesurer l'energie */
-#define NX 128 /* array dimensions: width */
+#define N 5000 /* Repeter le programme pour mesurer l'energie */
+#define NX 8192 /* array dimensions: width */
 #define NY NX /* array dimension: height */
 
 int main(int argc, char* argv[])
@@ -48,11 +48,9 @@ int main(int argc, char* argv[])
         for (int l = 0; l < N; l++) {
             /* perform operations on arrays */
             //compressed_matrixC = blaz_add_compressed(compressed_matrixA, compressed_matrixB);
-            compressed_matrixC = blaz_mul_compressed(compressed_matrixA, compressed_matrixB);
+            //compressed_matrixC = blaz_mul_compressed(compressed_matrixA, compressed_matrixB);
             //compressed_matrixC = blaz_mul_cst_compressed(compressed_matrixA, sqrt(2.0));
-            /*for(int i=0; i<NY; i++)
-                for(int j=0; j<NX; j++)
-                    result = blaz_dot_product_compressed(compressed_matrixA, compressed_matrixB, i, j);*/
+            result = blaz_dot_product_compressed(compressed_matrixA, compressed_matrixB, 5, 5);
         }
         kill(pidFils, SIGINT);
         end_t = clock();

@@ -7,8 +7,8 @@
 #include <signal.h>
 #include <time.h>
 
-#define N 3 /* repeat program to measure energy consumption */
-#define N_OPs 256 /* number of operations */
+#define N 10 /* repeat program to measure energy consumption */
+#define N_OPs 128 /* number of operations */
 #define NX 128 /* array dimensions: width */
 #define NY NX /* array dimension: height */
 #define RATE 5.6 /* desired compression rate */

@@ -5,6 +5,10 @@
         "signal.h": "c",
         "cstdlib": "c",
         "time.h": "c",
-        "string.h": "c"
+        "string.h": "c",
+        "math.h": "c",
+        "zfp.h": "c",
+        "cmath": "c",
+        "wait.h": "c"
     }
 }
