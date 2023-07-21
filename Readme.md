@@ -3,7 +3,7 @@
 This repository contains the C source codes used to assess the energy consumption of various compressors, as detailed in the paper "nrj_v1.pdf".
 
 ## Elementary Operations
-The directory "elementaryOperations" contains C codes implementing elementary matrix computations, such as dot product, addition, multiplication by a matrix, and multiplication by a constant. The following files are available:
+The directory "code" contains C codes implementing elementary matrix computations, such as dot product, addition, multiplication by a matrix, and multiplication by a constant. The following files are available:
 
 - `blaz.c`: Code for blaz compression.
 - `zfp.c`: Code for zfp compression.
